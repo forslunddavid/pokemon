@@ -3,6 +3,9 @@ const pokedexButton = document.querySelector('#pokedex-button');
 const homeButton = document.querySelector('#home-button');
 const myTeamButton = document.querySelector('#my-team-button');
 
+// const pokedexOverlay = document.getElementById("pokedex-overlay");
+// const myTeamOverlay = document.getElementById("my-team-overlay");
+
 //API
 const pokeApi = 'https://pokeapi.co'
 
@@ -19,3 +22,10 @@ myTeamButton.addEventListener('click', async () => {
 
 })
 
+
+
+
+// pokedexButton.addEventListener("click", function() {
+//   pokedexOverlay.classList.toggle("show");
+//   myTeamOverlay.classList.remove("show");
+// });
