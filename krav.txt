@@ -1,0 +1,35 @@
+Uppgift, översiktligt
+Din uppgift är att göra en webbapp där man kan sätta samman ett lag av Pokémons. Datan ska hämtas från Pokéapi: https://pokeapi.co/
+Appen ska publiceras online med surge.sh eller likvärdigt.
+
+Syftet med appen är att kunna bygga ett lag med Pokémons. Man väljer nya lagmedlemmar från en sökbar lista med alla Pokémons. Datan hämtar appen från Pokéapi.
+
+Ett lag består av tre ordinarie medlemmar, och obegränsat antal reserver. Om laget har för få medlemmar ska appen påminna användaren.
+
+Appen ska visa listan och lagmedlemmarna i två separata vyer. En vy ser ut som att det är en egen sida. Men i själva verket har appen bara en HTML-sida och du använder JavaScript för att byta vilka element som ska visas.
+
+
+Tips
+Börja med att göra en designskiss - mobile first! 30 sekunder med papper och penna, sedan 30 minuter wireframe i Figma, sedan 3 timmar mockup i Figma. Hämta gärna inspiration från officiella resurser när du funderar över design och färgval.
+Titta på datan som du kan få från API:et. Läs igenom uppgiften, så du vet vad du behöver.
+Du måste läsa dokumentationen för API:et - det ingår i uppgiften. Ibland svarar API:et direkt med den datan du vill ha. Ibland svarar den i stället med en URL, där datan finns. Då måste du skicka ett request till den URL:en för att få data.
+Se upp! Om du skickar GET request till API:et varje gång appen laddas, kan det bli väldigt många request. Särskilt om du har aktiverat "auto save" i VS Code. Om API:et tycker att du gjort för många request, så kan du bli blockad alltifrån 1 till 24 timmar.
+Det finns 1279 Pokémons inlagda i API:et. Du måste inte hämta alla medan du utvecklar. För att underlätta utvecklingen kan du till exempel ladda ner 20 stycken och spara i en array i kodfilen. Då behöver du inte skicka så många request förrän du vet att koden fungerar.
+Det finns bilder på alla Pokémons i egenskapen "sprites.front_default".
+Försök att separera funktioner som hämtar data, eller uppdaterar DOM (skapar nya eller använder befintliga element) med hjälp av data. Lägg dem i olika filer och använd export/import.
+
+Krav
+[G] Appen ska publiceras online med surge.sh eller likvärdigt. All kod ska finnas på GitHub i ett publikt repository.
+[G] Det är viktigt för kunden att du gör en professionell Single Page App. Funktionerna alert och prompt får inte användas. Appen får inte heller laddas om, vare sig med location.reload() eller att användaren klickar på en länk. Stoppa länk-klick med event.preventDefault().
+[G] Under utvecklingen ska du använda code review. Dvs granska någon annans kod, och få din kod granskad. (Behöver inte vara samma person.) Du ska dessutom använda minst två testpersoner. Detta ska du skriva om i projektrapporten.
+[G] Appen ska vara responsiv. Använd mobile first, dvs. börja med att designa gränssnittet för en smal skärm, och lägg sedan till stöd för större. Appen ska även vara lättanvänd och snygg. Testa den innan du lämnar in!
+[G] Appen ska kunna växla mellan två separata vyer: en för att hitta och lägga till lagmedlemmar; en annan för att se laguppställning.
+[G] Bilder och namn ska visas.
+[G] Söka efter Pokémon genom att skriva in en del av namnet i ett textfält. När Pokémons visas, ska man kunna lägga till dem till laget.
+Exempel på sökning: "Char" hittar "Charmander", "Charmeleon" och "Charizard".
+[G] När man lägger till en Pokémon, ska man kunna välja ett namn åt den.
+[G] Laguppställningen ska tala om ifall laget är komplett eller inte. Alla lag har tre ordinarie medlemmar och obegränsat antal reserver.
+[G] Kunna kicka en Pokémon, så att den försvinner från laguppställningen.
+[VG] Smart sökning: hittar Pokémon oavsett var i namnet strängen förekommer, samt oavsett om det är stora eller små bokstäver. Exempel: "MaN" hittar "Charmander", "Mankey" och "Omanyte".
+[VG] Laguppställningen ska visa namnet på alla abilities varje Pokémon har.
+[VG] Möjlighet att ändra ordningen på Pokémons i laget. (När två lag möter varandra, spelar det roll vilken som är först.)
