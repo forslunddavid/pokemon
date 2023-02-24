@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="script.js"></script>
+	<script type="module" src="script.js"></script>
 	<link rel="icon" type="image/x-icon" href="/bilder/Pokeball_icon-icons.com_67533.png">
 	<link rel="stylesheet" href="style.css">
 	<title>Document</title>
@@ -13,20 +13,39 @@
 	<header>
 		<h1>Pokémon</h1>
 	</header>
-	<section class="main-section">
-		<aside class="left-aside"></aside>
-		<main class="main-content">
-			<section class="button-section">
-				<button id="home-button">Home</button>
-				<button id="pokedex-button">Pokedex</button>
-				<button id="my-team-button">My Team</button>
-			</section>
-		</main>
-		<aside class="right-aside"></aside>
-	</section>
-	<footer>
-	</footer>
-
-
+	<main class="main-content">
+		<section class="button-section">
+			<button id="pokedex-button">Pokedex</button>
+			<button id="my-team-button">My Team</button>
+		</section>
+		<div id="pokedex-overlay" class="overlay">
+			<div class="overlay-content">
+				<!-- Pokedex content goes here -->
+				Pokedex
+				<section class="button-section">
+					<button id="pokedex-home-button">Home</button>
+					<button id="pokedex-my-team-button">My Team</button>
+				</section>
+				<form id="search-form">
+					<input type="text" id="search-input" placeholder="Search for your pokemon here">
+					<button type="submit">Search</button>
+				</form>
+				<div id="search-results"></div>
+			</div>
+		</div>
+		<div id="my-team-overlay" class="overlay">
+			<div class="overlay-content">
+				<!-- My team content goes here -->
+				My team
+				<section class="button-section">
+					<button id="my-team-home-button">Home</button>
+					<button id="my-team-pokedex-button">Pokedex</button>
+				</section>
+				<div class="starting-team">Starting Team</div>
+				<div class="reserves">Reserves</div>
+			</div>
+		</div>
+	</main>
 </body>
+
 </html>
