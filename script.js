@@ -1,3 +1,7 @@
+// ta bort alert och prompt
+
+//klicka på en pokemon i sökresultat lägga till den i my team samt välja namn. max 3 i my team, resten ska hamna i reserver
+
 const pokeUrl = 'https://pokeapi.co/'
 
 //Knappkonstanter
@@ -200,42 +204,40 @@ searchResults.innerHTML = '';
 searchButton.addEventListener('click', searchPokemon);
 
 function createPokemonCard(pokemon) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+	const card = document.createElement("div");
+	card.classList.add("card");
 
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+	const cardBody = document.createElement("div");
+	cardBody.classList.add("card-body");
 
-  const cardTitle = document.createElement("h5");
-  cardTitle.classList.add("card-title");
-  cardTitle.textContent = pokemon.name;
+	const cardTitle = document.createElement("h5");
+	cardTitle.classList.add("card-title");
+	cardTitle.textContent = pokemon.name;
 
-  const addButton = document.createElement("button");
-  addButton.classList.add("btn", "btn-primary");
-  addButton.textContent = "Add to Team";
-  addButton.addEventListener("click", () => {
+	const addButton = document.createElement("button");
+	addButton.classList.add("btn", "btn-primary");
+	addButton.textContent = "Add to Team";
+	addButton.addEventListener("click", () => {
     const pokemonName = prompt("Enter a name for your Pokemon:");
     if (pokemonName) {
-      const teamCount = startingTeamContainer.childElementCount;
-      if (teamCount < 3) {
+    	const teamCount = startingTeamContainer.childElementCount;
+    	if (teamCount < 3) {
         const pokemonCard = createPokemonCard(pokemon);
         const nameElement = pokemonCard.querySelector(".card-title");
         nameElement.textContent = `${pokemonName} (${pokemon.name})`;
         startingTeamContainer.appendChild(pokemonCard);
-      } else {
+    	} else {
         const pokemonCard = createPokemonCard(pokemon);
         const nameElement = pokemonCard.querySelector(".card-title");
         nameElement.textContent = `${pokemonName} (${pokemon.name})`;
         reserveTeamContainer.appendChild(pokemonCard);
-      }
+    	}
     }
-  });
+	});
 
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(addButton);
-  card.appendChild(cardBody);
+	cardBody.appendChild(cardTitle);
+	cardBody.appendChild(addButton);
+	card.appendChild(cardBody);
 
-  return card;
+	return card;
 }
-
-//klicka på en pokemon i sökresultat lägga till den i my team samt välja namn. max 3 i my team, resten ska hamna i reserver
