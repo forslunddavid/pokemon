@@ -18,31 +18,37 @@
 			<button id="pokedex-button">Pokedex</button>
 			<button id="my-team-button">My Team</button>
 		</section>
+		<p class="welcome-text">Welcome to the pokémon team builder. click the pokedex button to search for pokémons and build your team. to look at your team and arrange it click the my team button</p>
 		<div id="pokedex-overlay" class="overlay">
 			<div class="overlay-content">
 				<!-- Pokedex content goes here -->
-				Pokedex
+				<h2>Pokedex</h2>
 				<section class="button-section">
 					<button id="pokedex-home-button">Home</button>
 					<button id="pokedex-my-team-button">My Team</button>
 				</section>
 				<form id="search-form">
-					<input type="text" id="search-input" placeholder="Search for your pokemon here">
-					<button type="submit">Search</button>
+					<div class="search-form">
+						<input type="text" id="search-input" placeholder="Search...">
+						<button id="search-button">Search</button>
+					</div>
 				</form>
 				<div id="search-results"></div>
+				<div id="results-container"></div>
 			</div>
 		</div>
 		<div id="my-team-overlay" class="overlay">
 			<div class="overlay-content">
 				<!-- My team content goes here -->
-				My team
+				<h2>My team</h2>
 				<section class="button-section">
 					<button id="my-team-home-button">Home</button>
 					<button id="my-team-pokedex-button">Pokedex</button>
 				</section>
-				<div class="starting-team">Starting Team</div>
-				<div class="reserves">Reserves</div>
+				<h3>Starting Team</h3>
+				<div id="starting-team" class="pokemon-container"></div>
+				<h3>Reserves</h3>
+				<div id="my-reserves" class="pokemon-container"></div>
 			</div>
 		</div>
 	</main>

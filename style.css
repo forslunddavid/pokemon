@@ -4,26 +4,71 @@
 	box-sizing: border-box;
 	font-family: 'Helvetica Neue', sans-serif;
 	font-kerning: normal;
-	color: #020005;
+	color: #3A4DCA;
 }
 
 header {
-	background-color: firebrick;
+	background-color: #FFDE02;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 10em;
+	height: 10vh;
 }
 
 h1 {
 	position: absolute;
 }
 
+h2 {
+	display: flex;
+	justify-content: center;
+	margin: 0.5em;
+}
+
+h3 {
+	display: flex;
+	justify-content: center;
+	margin: 0.5em;
+}
+
 .main-content {
 	display: flex;
 	flex-direction: column;
-	height: calc(100% - 10em);
-	background-color: blueviolet;
+	height: 90vh;
+	background-color: #B3A124;
+}
+
+.welcome-text{
+	margin: 1em 3em;
+
+}
+
+button {
+	width: 7em;
+	height: 3em;
+	border:solid 2px #3A4DCA;
+	border-radius: 0.5em;
+}
+
+#search-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 1em;
+}
+
+.search-form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+input{
+	height: 3em;
+	border: solid 2px #3A4DCA;
+	border-radius: 0.5em;
+	margin: 0.5em;
 }
 
 .button-section {
@@ -31,8 +76,9 @@ h1 {
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	margin: 0.5em 2em;
+	/* justify-content: center; */
 	padding: 0 1em;
+	max-width: 320px;
 }
 
 #home-button {
@@ -56,13 +102,16 @@ h1 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: #fff;
+	background-color: #B3A124;
 	padding: 20px;
 	width: 80%;
 	max-width: 800px;
 	height: 70%;
 	overflow-y: auto;
 	border-radius: 2em;
+	border-color: #3A4DCA;
+	border: solid 5px;
+	justify-content: center;
 }
 
 .overlay.show {
