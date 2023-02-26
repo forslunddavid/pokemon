@@ -1,10 +1,8 @@
-// ta bort alert och prompt
-
 //klicka på en pokemon i sökresultat lägga till den i my team samt välja namn. max 3 i my team, resten ska hamna i reserver
 
 const pokeUrl = 'https://pokeapi.co/'
 
-//Knappkonstanter
+// Konstanter för knappar
 
 const pokedexButton = document.getElementById("pokedex-button");
 const myTeamButton = document.getElementById("my-team-button");
@@ -17,7 +15,7 @@ const myTeamPokedexButton = document.getElementById("my-team-pokedex-button");
 const pokedexOverlay = document.getElementById("pokedex-overlay");
 const myTeamOverlay = document.getElementById("my-team-overlay");
 
-// Sökkonstanter
+// Konstanter för sökfältet
 
 const searchInput = document.getElementById("search-input");
 
@@ -25,13 +23,12 @@ const searchForm = document.getElementById("search-form");
 
 const searchResults = document.getElementById("search-results");
 
-const searchButton = document.querySelector('#search-button');
-
 const searchBar = document.querySelector('#search-bar');
 
 const searchResultsContainer = document.getElementById("search-results-container");
 
-//My Team konstanter
+// Konstanter för laget
+
 const startingTeam = document.querySelector('.starting-team');
 const reserves = document.querySelector('.reserves');
 
@@ -39,7 +36,6 @@ const startingTeamContainer = document.querySelector(".starting-team");
 const reserveTeamContainer = document.querySelector(".reserve-team");
 
 const pokemonData = {};
-
 
 // Eventlisteners knappar
 
@@ -76,7 +72,7 @@ myTeamPokedexButton.addEventListener("click", function(){
 //Eventlisteners sökfält
 
 searchForm.addEventListener("submit", function(event) {
-	event.preventDefault(); // prevent form submission
+	event.preventDefault(); // förhindra att formuäret skickas i "förväg"
 
 	const searchTerm = searchInput.value;
 	const searchUrl = `${pokeUrl}api/v2/pokemon/${searchTerm}`;
@@ -108,7 +104,7 @@ searchForm.addEventListener("submit", function(event) {
 searchInput.addEventListener("keyup", function() {
     const searchTerm = searchInput.value.toLowerCase();
     if (searchTerm.length >= 3) {
-        fetch(`${pokeUrl}api/v2/pokemon/?limit=1118`)
+        fetch(`${pokeUrl}api/v2/pokemon/?limit=1279`)
             .then(response => response.json())
             .then(data => {
                 const matchingPokemon = data.results.filter(pokemon => pokemon.name.includes(searchTerm));
@@ -138,106 +134,150 @@ searchInput.addEventListener("keyup", function() {
                     searchResults.innerHTML = "<p>No results found</p>";
                 }
             })
-            .catch(error => {
-                searchResults.innerHTML = "<p>No results found</p>";
-            });
     } else {
         searchResults.innerHTML = "";
     }
 });
 
-// Function to add a pokemon to the starting team or reserves
+// Funktion för att lägga till en pokemon i startlaget eller reservlaget
 function addPokemonToTeam(pokemonName) {
-  // Create a new div to hold the pokemon
-	const newPokemonDiv = document.createElement('div');
-	newPokemonDiv.innerText = pokemonName;
+// Skapa en ny div för att hålla pokémonen
+const newPokemonDiv = document.createElement('div');
+newPokemonDiv.innerText = pokemonName;
 
-  // Check if there is room in the starting team
-	if (startingTeam.children.length < 3) {
-    startingTeam.appendChild(newPokemonDiv);
-	} else {
-    reserves.appendChild(newPokemonDiv);
-	}
+// Kolla om det finns plats i startlaget
+if (startingTeam.children.length < 3) {
+startingTeam.appendChild(newPokemonDiv);
+} else {
+reserves.appendChild(newPokemonDiv);
+}
 }
 
-// Function to display search results
+// Eventlistener för sökresultat
+searchResultsContainer.addEventListener('click', event => {
+	const pokemonDiv = event.target.closest('.pokemon-result');
+	if (!pokemonDiv) {
+    return;
+	}
+
+	const pokemonName = pokemonDiv.dataset.name;
+	addPokemonToTeam(pokemonName);
+});
+
+// Funktion för att visa sökresultat
 function displaySearchResults(results) {
-  // Clear previous results
+  // Rensa tidigare resultat
 	searchResults.innerHTML = '';
 
-  // Loop through results and create a button for each pokemon
+  // Loopa genom resultaten och skapa en knapp för varje pokemon
 	results.forEach(result => {
     const pokemonName = result.name;
     const newButton = document.createElement('button');
     newButton.innerText = pokemonName;
-    newButton.addEventListener('click', () => {
-      // Prompt the user for a name to use for the pokemon
-    	const newName = prompt('Enter a name for this pokemon:');
-    	if (newName) {
-        pokemonData[newName] = result;
-        addPokemonToTeam(newName);
-    	}
-    });
-    searchResults.appendChild(newButton);
+
+    // Skapa en div för sökresultatet
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('pokemon-result');
+    newDiv.dataset.name = pokemonName;
+    newDiv.appendChild(newButton);
+    searchResults.appendChild(newDiv);
 	});
 }
 
-// Function to search for pokemon
+
+
+// Eventlistener för cancelknapp
+const cancelButton = document.createElement('button');
+cancelButton.innerText = 'Avbryt';
+cancelButton.addEventListener('click', () => {
+// Dölj inmatningsfältet och knappen
+pokemonNameInput.style.display = 'none';
+nameInput.value = '';
+});
+pokemonNameInput.appendChild(cancelButton);
+
+// Denna del av koden skapar en "avbryt-knapp" för användaren att klicka på om de vill avbryta att lägga till en Pokemon till sitt lag. När användaren klickar på "Avbryt"-knappen kommer inmatningsfältet och knappen att döljas och värdet i inmatningsfältet kommer att rensas.
+
 async function searchPokemon() {
-	const searchTerm = searchBar.value.toLowerCase();
-	if (pokemonData[searchTerm]) {
-    addPokemonToTeam(searchTerm);
-	} else {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`);
-    if (response.ok) {
-    	const data = await response.json();
-    	pokemonData[searchTerm] = data;
-    	addPokemonToTeam(searchTerm);
+    const searchTerm = searchBar.value.toLowerCase();
+    if (pokemonData[searchTerm]) {
+        addPokemonToTeam(searchTerm);
     } else {
-    	alert(`No pokemon found with name '${searchTerm}'`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`);
+        if (response.ok) {
+            const data = await response.json();
+            pokemonData[searchTerm] = data;
+            addPokemonToTeam(searchTerm);
+        } else {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = `Ingen Pokemon hittades med namn '${searchTerm}'`;
+            errorMessage.style.display = 'block';
+        }
     }
-	}
-	searchBar.value = '';
-searchResults.innerHTML = '';
+    searchBar.value = '';
+    searchResults.innerHTML = '';
 }
 
-searchButton.addEventListener('click', searchPokemon);
 
+// Denna funktion söker efter en Pokemon baserat på användarens inmatning i sökfältet. Om sökningen matchar en Pokemon som redan finns i listan med Pokemon (pokemonData), kommer funktionen lägga till Pokemonen till användarens lag. Annars kommer funktionen att söka efter Pokemonen på API:et "https://pokeapi.co" och om Pokemonen hittas, kommer den läggas till användarens lag. Om sökningen inte resulterar i att någon Pokemon hittas, kommer ett felmeddelande att visas.
+
+// Funktion för att skapa en Pokemon-kort
 function createPokemonCard(pokemon) {
-	const card = document.createElement("div");
-	card.classList.add("card");
+const card = document.createElement("div");
+card.classList.add("card");
 
-	const cardBody = document.createElement("div");
-	cardBody.classList.add("card-body");
+const cardBody = document.createElement("div");
+cardBody.classList.add("card-body");
 
-	const cardTitle = document.createElement("h5");
-	cardTitle.classList.add("card-title");
-	cardTitle.textContent = pokemon.name;
+const cardTitle = document.createElement("h5");
+cardTitle.classList.add("card-title");
+cardTitle.textContent = pokemon.name;
 
-	const addButton = document.createElement("button");
-	addButton.classList.add("btn", "btn-primary");
-	addButton.textContent = "Add to Team";
-	addButton.addEventListener("click", () => {
-    const pokemonName = prompt("Enter a name for your Pokemon:");
-    if (pokemonName) {
-    	const teamCount = startingTeamContainer.childElementCount;
-    	if (teamCount < 3) {
-        const pokemonCard = createPokemonCard(pokemon);
-        const nameElement = pokemonCard.querySelector(".card-title");
-        nameElement.textContent = `${pokemonName} (${pokemon.name})`;
-        startingTeamContainer.appendChild(pokemonCard);
-    	} else {
-        const pokemonCard = createPokemonCard(pokemon);
-        const nameElement = pokemonCard.querySelector(".card-title");
-        nameElement.textContent = `${pokemonName} (${pokemon.name})`;
-        reserveTeamContainer.appendChild(pokemonCard);
-    	}
-    }
-	});
+const addButton = document.createElement("button");
+addButton.classList.add("btn", "btn-primary");
+addButton.textContent = "Lägg till i laget";
+addButton.addEventListener("click", () => {
+addPokemonButton.addEventListener('click', () => {
+
+ // Visa popup-rutan för att lägga till Pokemon i laget
+const addPokemonModal = document.getElementById('add-pokemon-modal');
+addPokemonModal.classList.add('show');
+
+// Lägg till en händelselyssnare på "Spara"-knappen i popup-rutan
+const savePokemonButton = document.getElementById('save-pokemon');
+savePokemonButton.addEventListener('click', () => {
+// Hämta värdet av textfältet
+const pokemonNameInput = document.getElementById('pokemon-name');
+const pokemonName = pokemonNameInput.value.trim();
+
+ // Om ett namn har angetts, lägg till Pokemon i laget
+if (pokemonName) {
+	const teamCount = startingTeamContainer.childElementCount;
+	if (teamCount < 3) {
+    const pokemonCard = createPokemonCard(pokemon);
+    const nameElement = pokemonCard.querySelector(".card-title");
+    nameElement.textContent = `${pokemonName} (${pokemon.name})`;
+    startingTeamContainer.appendChild(pokemonCard);
+	} else {
+    const pokemonCard = createPokemonCard(pokemon);
+    const nameElement = pokemonCard.querySelector(".card-title");
+    nameElement.textContent = `${pokemonName} (${pokemon.name})`;
+    reserveTeamContainer.appendChild(pokemonCard);
+	}
+
+  // Göm popup-rutan
+	addPokemonModal.classList.remove('show');
+	pokemonNameInput.value = '';
+}
+});
+
+});
+
 
 	cardBody.appendChild(cardTitle);
 	cardBody.appendChild(addButton);
 	card.appendChild(cardBody);
 
 	return card;
+	})
 }

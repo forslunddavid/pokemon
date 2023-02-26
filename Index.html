@@ -30,11 +30,23 @@
 				<form id="search-form">
 					<div class="search-form">
 						<input type="text" id="search-input" placeholder="Search...">
-						<button id="search-button">Search</button>
 					</div>
 				</form>
 				<div id="search-results"></div>
 				<div id="results-container"></div>
+				<div id="pokemon-name-input">
+					<label for="name-input">Enter a name for this pokemon:</label>
+					<input type="text" id="name-input">
+					<button id="name-submit-button">Submit</button>
+				</div>
+				<div class="overlay" id="add-pokemon-modal">
+					<div class="overlay-content">
+						<h2>Add a Pokemon to your team</h2>
+						<label for="pokemon-name">Pokemon Name:</label>
+						<input type="text" id="pokemon-name">
+						<button id="save-pokemon">Save</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="my-team-overlay" class="overlay">
