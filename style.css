@@ -34,8 +34,16 @@ h3 {
 .main-content {
 	display: flex;
 	flex-direction: column;
-	height: 90vh;
+	min-height: 90vh;
 	background-color: #B3A124;
+}
+
+#my-team{
+	display: none;
+}
+
+#pokedex{
+	display: block;
 }
 
 .welcome-text{
@@ -82,53 +90,58 @@ input{
 	max-width: 320px;
 	margin: 0 auto;
 }
-
-#home-button {
-	margin: 0 0.5em;
-	width: 5em;
-}
-
-.overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 1;
-	display: none;
-}
-
-.overlay-content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: #B3A124;
-	padding: 20px;
-	width: 80%;
-	max-width: 800px;
-	height: 70%;
-	overflow-y: auto;
-	border-radius: 2em;
-	border-color: #3A4DCA;
-	border: solid 5px;
-	justify-content: center;
-}
-
-.overlay.show {
-	display: block;
-}
-
 #search-results {
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-rows: auto;
+		justify-content: center;
+}
+
+#starting-team{
 	display: grid;
 	grid-template-columns: auto;
 	grid-template-rows: auto;
 	justify-content: center;
 }
 
-#pokemon-name-input {
-	display: none;
+#my-reserves {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+	justify-content: center;
+}
+
+#starting-team div{
+	border: solid 2px #3A4DCA;
+	margin: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#my-reserves div {
+	border: solid 2px #3A4DCA;
+	margin: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#search-results div {
+	border: solid 2px #3A4DCA;
+	margin: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#search-results div p {
+	display: flex;
+	justify-content: center;
+}
+
+#search-results div button {
+
 }
 
 /* #search-results div {
@@ -137,19 +150,42 @@ input{
 } */
 
 @media screen and (min-width: 480px) {
-		#search-results {
-			display: grid;
-			grid-template-columns: auto auto;
-			grid-template-rows: auto;
-		}
+	#search-results {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto;
+	}
+	#starting-team {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto;
+	}
+
+	#my-reserves {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto;
+	}
 
 }
 
 @media screen and (min-width: 720px) {
 	#search-results {
-		display: grid;
-		grid-template-columns: auto auto auto;
-		grid-template-rows: auto;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: auto;
+	}
+
+	#starting-team {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: auto;
+	}
+
+	#my-reserves {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: auto;
 	}
 
 }
