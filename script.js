@@ -1,5 +1,5 @@
 //API
-const pokeUrl = "https://pokeapi.co/";
+const pokeUrl = "https://pokeapi.co/api/v2/";
 
 // Hämta element från DOM
 const pokedexButton = document.getElementById("pokedex-button");
@@ -17,7 +17,7 @@ const reserves = document.querySelector("#my-reserves");
 function teamStatus() {
     const teamSize = startingTeam.children.length;
     if (teamSize < maxTeamSize) {
-        return `The team needs ${maxTeamSize - teamSize} Pokémon`;
+        return `The team needs ${maxTeamSize - teamSize} more Pokémons`;
     } else {
         return "Team is full";
     }
@@ -50,7 +50,7 @@ myTeamButton.addEventListener("click", () => {
 searchInput.addEventListener("keyup", function () {
     const searchTerm = searchInput.value.toLowerCase();
     if (searchTerm.length >= 3) {
-        fetch(`${pokeUrl}api/v2/pokemon/?limit=1279`)
+        fetch(`${pokeUrl}pokemon/?limit=1279`)
             .then((response) => response.json())
             .then((data) => {
                 const matchingPokemon = data.results.filter((pokemon) =>
@@ -63,11 +63,13 @@ searchInput.addEventListener("keyup", function () {
                             .then((response) => response.json())
                             .then((data) => {
                                 const pokemonInfo = {
-                                    id: data.id,
                                     name: data.name,
                                     image: data.sprites.front_default,
                                     types: data.types.map(
                                         (type) => type.type.name
+                                    ),
+                                    abilities: data.abilities.map(
+                                        (ability) => ability.ability.name
                                     ),
                                 };
                                 resultHtml += `
@@ -75,13 +77,14 @@ searchInput.addEventListener("keyup", function () {
                                         <img src="${pokemonInfo.image}" alt="${
                                     pokemonInfo.name
                                 }">
-                                        <button class="add-to-team" data-pokemon-id="${
-                                            pokemonInfo.id
-                                        }">Add to team</button>
+                                        <button class="add-to-team">Add to team</button>
                                         <h3 class="nickname">${
                                             pokemonInfo.name
                                         }</h3>
                                         <p>Types: ${pokemonInfo.types.join(
+                                            ", "
+                                        )}</p>
+                                        <p>Types: ${pokemonInfo.abilities.join(
                                             ", "
                                         )}</p>
                                     </div>
@@ -118,8 +121,8 @@ searchResultsContainer.addEventListener("click", (event) => {
         addDownButton.textContent = "↓";
 
         cardClone.appendChild(removeFromTeamButton);
-        cardClone.appendChild(addNicknameButton);
         cardClone.appendChild(addNicknameInput);
+        cardClone.appendChild(addNicknameButton);
         cardClone.appendChild(addUpButton);
         cardClone.appendChild(addDownButton);
 
@@ -147,6 +150,7 @@ searchResultsContainer.addEventListener("click", (event) => {
             }
             addNicknameInput.value = "";
         });
+
         addUpButton.addEventListener("click", (event) => {
             const card = event.target.parentElement;
             const previousSibling = card.previousElementSibling;
