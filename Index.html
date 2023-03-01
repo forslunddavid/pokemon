@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="module" src="script3.js"></script>
-	<link rel="icon" type="image/x-icon" href="/bilder/Pokeball_icon-icons.com_67533.png">
-	<link rel="stylesheet" href="style.css">
-	<title>Pokedex</title>
-</head>
-<body>
-	<header>
-		<h1>Pokémon</h1>
-	</header>
-	<main class="main-content">
-		<section class="button-section">
-			<button id="pokedex-button">Pokedex</button>
-			<button id="my-team-button">My Team</button>
-		</section>
-		<div id="pokedex" class="pokedex">
-				<h2>Pokedex</h2>
-				<p class="welcome-text">Welcome to the pokémon team builder. In the pokedex you can search for pokémons and build
-					your team. to look at your team and arrange it click the my team button</p>
-				<form id="search-form">
-					<div class="search-form">
-						<input type="text" id="search-input" placeholder="Search...">
-					</div>
-				</form>
-				<div id="search-results"></div>
-				<div id="results-container"></div>
-		</div>
-		<div id="my-team" class="my-team">
-				<h2>My team</h2>
-				<h3>Starting Team</h3>
-				<div id="starting-team" class="pokemon-container"></div>
-				<h3>Reserves</h3>
-				<div id="my-reserves" class="pokemon-container"></div>
-		</div>
-	</main>
-</body>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="module" src="script3.js"></script>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/bilder/Pokeball_icon-icons.com_67533.png"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Pokedex</title>
+    </head>
+    <body>
+        <header>
+            <img
+                class="header-pic"
+                src="bilder/Pokemon-Logo.png"
+                alt="Pokémon"
+            />
+            <!-- <h1>Pokémon</h1> -->
+        </header>
+        <main class="main-content">
+            <section class="button-section">
+                <button id="pokedex-button">Pokedex</button>
+                <button id="my-team-button">My Team</button>
+            </section>
+            <div id="pokedex" class="pokedex">
+                <h2>Pokedex</h2>
+                <p class="welcome-text">
+                    Welcome to the pokémon team builder. In the pokedex you can
+                    search for pokémons and build your team. to look at your
+                    team and arrange it click the my team button
+                </p>
+                <form id="search-form">
+                    <div class="search-form">
+                        <input
+                            type="text"
+                            id="search-input"
+                            placeholder="Search..."
+                        />
+                    </div>
+                </form>
+                <div id="search-results"></div>
+                <div id="results-container"></div>
+            </div>
+            <div id="my-team" class="my-team">
+                <h2 class="my-team-header">My team</h2>
+                <h3>Starting Team</h3>
+                <div id="starting-team" class="pokemon-container"></div>
+                <h3>Reserves</h3>
+                <div id="my-reserves" class="pokemon-container"></div>
+            </div>
+        </main>
+    </body>
 </html>

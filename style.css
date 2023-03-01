@@ -1,147 +1,163 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Helvetica Neue', sans-serif;
-	font-kerning: normal;
-	color: #3A4DCA;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", sans-serif;
+    font-kerning: normal;
+    color: #3a4dca;
 }
 
 header {
-	background-color: #FFDE02;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 10vh;
+    background-color: #ffde02;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
 }
 
+.header-pic {
+    max-height: 8vh;
+    width: auto;
+}
 h1 {
-	position: absolute;
+    position: absolute;
 }
 
 h2 {
-	display: flex;
-	justify-content: center;
-	margin: 0.5em;
+    display: flex;
+    justify-content: center;
+    margin: 0.5em;
 }
 
 h3 {
-	display: flex;
-	justify-content: center;
-	margin: 0.5em;
+    display: flex;
+    justify-content: center;
+    margin: 0.5em;
 }
 
 .main-content {
-	display: flex;
-	flex-direction: column;
-	min-height: 90vh;
-	background-color: #B3A124;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    background-color: #b3a124;
 }
 
-#my-team{
-	display: none;
+#my-team {
+    display: none;
 }
 
-#pokedex{
-	display: block;
+#pokedex {
+    display: block;
 }
 
-.welcome-text{
-	margin: 1em 3em;
+.welcome-text {
+    margin: 1em 3em;
+}
 
+#team-status-container {
+    margin: 1em 3em;
+}
+
+.team-status {
+    color: #ff0000;
+}
+
+.cards {
+    width: 180px;
+}
+
+.cards-image {
+    width: auto;
+    height: 170;
 }
 
 button {
-	width: 7em;
-	height: 3em;
-	border:solid 2px #3A4DCA;
-	border-radius: 0.5em;
-	margin: 1em 1em 1em 1em;
+    width: 7em;
+    height: 3em;
+    border: solid 2px #3a4dca;
+    border-radius: 0.5em;
+    margin: 1em 1em 1em 1em;
 }
 
 #search-form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
 }
 
 .search-form {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-input{
-	height: 3em;
-	border: solid 2px #3A4DCA;
-	border-radius: 0.5em;
-	margin: 0.5em;
+input {
+    height: 3em;
+    border: solid 2px #3a4dca;
+    border-radius: 0.5em;
+    margin: 0.5em;
 }
 
 .button-section {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	/* justify-content: center; */
-	padding: 0 1em;
-	max-width: 320px;
-	margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 0 1em;
+    max-width: 320px;
+    margin: 0 auto;
 }
 #search-results {
-		display: grid;
-		grid-template-columns: auto;
-		grid-template-rows: auto;
-		justify-content: center;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-content: center;
 }
 
-#starting-team{
-	display: grid;
-	grid-template-columns: auto;
-	grid-template-rows: auto;
-	justify-content: center;
+#starting-team {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-content: center;
 }
 
 #my-reserves {
-	display: grid;
-	grid-template-columns: auto;
-	grid-template-rows: auto;
-	justify-content: center;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-content: center;
 }
 
-#starting-team div{
-	border: solid 2px #3A4DCA;
-	margin: 1em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+#starting-team div {
+    border: solid 2px #3a4dca;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #my-reserves div {
-	border: solid 2px #3A4DCA;
-	margin: 1em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+    border: solid 2px #3a4dca;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #search-results div {
-	border: solid 2px #3A4DCA;
-	margin: 1em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+    border: solid 2px #3a4dca;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #search-results div p {
-	display: flex;
-	justify-content: center;
-}
-
-#search-results div button {
-
+    display: flex;
+    justify-content: center;
 }
 
 /* #search-results div {
@@ -150,42 +166,40 @@ input{
 } */
 
 @media screen and (min-width: 480px) {
-	#search-results {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto;
-	}
-	#starting-team {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto;
-	}
+    #search-results {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
+    #starting-team {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
 
-	#my-reserves {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto;
-	}
-
+    #my-reserves {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
 }
 
 @media screen and (min-width: 720px) {
-	#search-results {
-	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-template-rows: auto;
-	}
+    #search-results {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto;
+    }
 
-	#starting-team {
-	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-template-rows: auto;
-	}
+    #starting-team {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto;
+    }
 
-	#my-reserves {
-	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-template-rows: auto;
-	}
-
+    #my-reserves {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto;
+    }
 }
