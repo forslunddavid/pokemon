@@ -93,9 +93,7 @@ searchInput.addEventListener("keyup", async function () {
             } else {
                 searchResults.innerHTML = "<p>No results found</p>";
             }
-        } catch (error) {
-            console.error(error);
-        }
+        } catch (error) {}
     } else {
         searchResults.innerHTML = "";
     }
