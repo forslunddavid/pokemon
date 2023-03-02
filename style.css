@@ -39,7 +39,13 @@ h3 {
     display: flex;
     flex-direction: column;
     min-height: 90vh;
-    background-color: #b3a124;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(
+        30deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(59, 76, 202, 1) 35%,
+        rgba(255, 222, 0, 1) 100%
+    );
 }
 
 #my-team {
@@ -58,7 +64,7 @@ h3 {
     margin: 1em 3em;
 }
 
-.team-status {
+#team-status-container span {
     color: #ff0000;
 }
 

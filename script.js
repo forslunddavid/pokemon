@@ -1,7 +1,6 @@
-//API
-const pokeUrl = "https://pokeapi.co/api/v2/";
+// popup overlay som berättar att man lagt till i my team samt css. tror jag har med allt då! vore kanske snygg med någon animation på knapptryck.
 
-// Hämta element från DOM
+const pokeUrl = "https://pokeapi.co/api/v2/";
 const pokedexButton = document.getElementById("pokedex-button");
 const myTeamButton = document.getElementById("my-team-button");
 const pokedex = document.getElementById("pokedex");
@@ -9,7 +8,6 @@ const myTeam = document.getElementById("my-team");
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("search-results");
 const searchResultsContainer = document.getElementById("search-results");
-
 const maxTeamSize = 3;
 const startingTeam = document.querySelector("#starting-team");
 const reserves = document.querySelector("#my-reserves");
@@ -36,7 +34,6 @@ statusContainer.appendChild(statusMessage);
 const teamContainer = document.getElementById("my-team");
 teamContainer.insertBefore(statusContainer, teamContainer.firstChild);
 
-// lägga till eventlyssnare för att visa/ gömma pokedex och my team
 pokedexButton.addEventListener("click", () => {
     pokedex.style.display = "block";
     myTeam.style.display = "none";
@@ -47,55 +44,45 @@ myTeamButton.addEventListener("click", () => {
     pokedex.style.display = "none";
 });
 
-searchInput.addEventListener("keyup", function () {
+searchInput.addEventListener("keyup", async function () {
     const searchTerm = searchInput.value.toLowerCase();
     if (searchTerm.length >= 3) {
-        fetch(`${pokeUrl}pokemon/?limit=1279`)
-            .then((response) => response.json())
-            .then((data) => {
-                const matchingPokemon = data.results.filter((pokemon) =>
-                    pokemon.name.includes(searchTerm)
-                );
-                let resultHtml = "";
-                if (matchingPokemon.length > 0) {
-                    matchingPokemon.forEach((pokemon) => {
-                        fetch(pokemon.url)
-                            .then((response) => response.json())
-                            .then((data) => {
-                                const pokemonInfo = {
-                                    name: data.name,
-                                    image: data.sprites.front_default,
-                                    types: data.types.map(
-                                        (type) => type.type.name
-                                    ),
-                                    abilities: data.abilities.map(
-                                        (ability) => ability.ability.name
-                                    ),
-                                };
-                                resultHtml += `
-                                    <div>
-                                        <img src="${pokemonInfo.image}" alt="${
-                                    pokemonInfo.name
-                                }">
-                                        <button class="add-to-team">Add to team</button>
-                                        <h3 class="nickname">${
-                                            pokemonInfo.name
-                                        }</h3>
-                                        <p>Types: ${pokemonInfo.types.join(
-                                            ", "
-                                        )}</p>
-                                        <p>Types: ${pokemonInfo.abilities.join(
-                                            ", "
-                                        )}</p>
-                                    </div>
-                                `;
-                                searchResults.innerHTML = resultHtml;
-                            });
-                    });
-                } else {
-                    searchResults.innerHTML = "<p>No results found</p>";
+        try {
+            const response = await fetch(`${pokeUrl}pokemon/?limit=1279`);
+            const data = await response.json();
+            const matchingPokemon = data.results.filter((pokemon) =>
+                pokemon.name.includes(searchTerm)
+            );
+            let resultHtml = "";
+            if (matchingPokemon.length > 0) {
+                for (const pokemon of matchingPokemon) {
+                    const response = await fetch(pokemon.url);
+                    const data = await response.json();
+                    const pokemonInfo = {
+                        name: data.name,
+                        image: data.sprites.front_default,
+                        types: data.types.map((type) => type.type.name),
+                        abilities: data.abilities.map(
+                            (ability) => ability.ability.name
+                        ),
+                    };
+                    resultHtml += `
+            <div>
+				<img src="${pokemonInfo.image}" alt="${pokemonInfo.name}">
+				<button class="add-to-team">Add to team</button>
+				<h3 class="nickname">${pokemonInfo.name}</h3>
+				<p>Types: ${pokemonInfo.types.join(", ")}</p>
+				<p>Abilities: ${pokemonInfo.abilities.join(", ")}</p>
+            </div>
+			`;
+                    searchResults.innerHTML = resultHtml;
                 }
-            });
+            } else {
+                searchResults.innerHTML = "<p>No results found</p>";
+            }
+        } catch (error) {
+            console.error(error);
+        }
     } else {
         searchResults.innerHTML = "";
     }
