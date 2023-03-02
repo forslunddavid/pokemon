@@ -1,10 +1,20 @@
+/* Bas style för hela dokumentet */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Helvetica Neue", sans-serif;
     font-kerning: normal;
-    color: #3a4dca;
+}
+
+/*  gradient för bodyn */
+body {
+    background: linear-gradient(
+        30deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(59, 76, 202, 1) 35%,
+        rgba(255, 222, 0, 1) 100%
+    );
 }
 
 header {
@@ -19,8 +29,12 @@ header {
     max-height: 8vh;
     width: auto;
 }
+
+/* style för rubrikerna */
 h1 {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin: 0.5em;
 }
 
 h2 {
@@ -29,25 +43,13 @@ h2 {
     margin: 0.5em;
 }
 
-h3 {
-    display: flex;
-    justify-content: center;
-    margin: 0.5em;
-}
-
 .main-content {
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
-    background: rgb(255, 0, 0);
-    background: linear-gradient(
-        30deg,
-        rgba(255, 0, 0, 1) 0%,
-        rgba(59, 76, 202, 1) 35%,
-        rgba(255, 222, 0, 1) 100%
-    );
+    min-height: 82vh;
 }
 
+/* för att kunna visa/gömma my team och pokedex */
 #my-team {
     display: none;
 }
@@ -56,40 +58,42 @@ h3 {
     display: block;
 }
 
+/* style för text på startsidan */
 .welcome-text {
-    margin: 1em 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3em 20vw;
+    max-width: 60vw;
 }
 
 #team-status-container {
     margin: 1em 3em;
+    justify-content: center;
 }
 
-#team-status-container span {
-    color: #ff0000;
-}
-
-.cards {
-    width: 180px;
-}
-
-.cards-image {
-    width: auto;
-    height: 170;
+#team-status-container,
+.welcome-text {
+    text-align: center; /* Centers the contents of the div */
 }
 
 button {
-    width: 7em;
-    height: 3em;
+    background-color: #ffffff;
     border: solid 2px #3a4dca;
-    border-radius: 0.5em;
-    margin: 1em 1em 1em 1em;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    margin: 1em;
 }
 
-#search-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1em;
+button:active {
+    background-color: #e4e4e4;
+    transform: translateY(2px);
+}
+
+.main-button {
+    width: 7em;
+    height: 3em;
+    border-radius: 0.5em;
 }
 
 .search-form {
@@ -104,6 +108,7 @@ input {
     border: solid 2px #3a4dca;
     border-radius: 0.5em;
     margin: 0.5em;
+    padding: 0.4em;
 }
 
 .button-section {
@@ -111,11 +116,11 @@ input {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    /* justify-content: center; */
     padding: 0 1em;
     max-width: 320px;
     margin: 0 auto;
 }
+
 #search-results {
     display: grid;
     grid-template-columns: auto;
@@ -123,6 +128,62 @@ input {
     justify-content: center;
 }
 
+#search-results div p {
+    display: flex;
+    justify-content: center;
+}
+
+/* pokekortet */
+.card {
+    width: 250px;
+    background-color: #d6ffc6;
+    border: solid 2px #3a4dca;
+    border-radius: 1em 0.5em;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 2em;
+}
+
+.cards-image {
+    width: 170;
+    height: 170;
+}
+
+.card button {
+    color: #ff0000;
+    border-radius: 0.3em;
+    height: 2em;
+}
+
+.nickname {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.add-nickname-input {
+    margin: 0em 1em;
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0.5em;
+}
+
+.abilities {
+    display: flex;
+    justify-content: center;
+    margin: 0em 1em;
+    font-weight: bolder;
+}
+
+/* startlaget och reserver */
 #starting-team {
     display: grid;
     grid-template-columns: auto;
@@ -137,41 +198,50 @@ input {
     justify-content: center;
 }
 
-#starting-team div {
-    border: solid 2px #3a4dca;
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* overlay som talar om att man lagt till i laget */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 3;
 }
 
-#my-reserves div {
-    border: solid 2px #3a4dca;
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#overlay.show {
+    display: block;
 }
 
-#search-results div {
-    border: solid 2px #3a4dca;
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#overlay-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-#search-results div p {
-    display: flex;
-    justify-content: center;
+hr {
+    margin: 0em 5em;
+    border: solid 1px #ffde02;
 }
 
-/* #search-results div {
-	display: grid;
-	justify-content: center;
-} */
+footer {
+    background: transparent;
+    display: flex;
+    width: auto;
+    height: 8vh;
+    justify-content: center;
+    align-items: center;
+}
 
-@media screen and (min-width: 480px) {
+/* Media querys */
+@media screen and (min-width: 590px) {
     #search-results {
         display: grid;
         grid-template-columns: auto auto;
@@ -190,7 +260,7 @@ input {
     }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 880px) {
     #search-results {
         display: grid;
         grid-template-columns: auto auto auto;

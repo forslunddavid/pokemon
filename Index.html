@@ -20,21 +20,22 @@
                 src="bilder/Pokemon-Logo.png"
                 alt="Pokémon"
             />
-            <!-- <h1>Pokémon</h1> -->
         </header>
         <main class="main-content">
             <section class="button-section">
-                <button id="pokedex-button">Pokedex</button>
-                <button id="my-team-button">My Team</button>
+                <button class="main-button" id="pokedex-button">Pokedex</button>
+                <button class="main-button" id="my-team-button">My Team</button>
             </section>
-            <div id="pokedex" class="pokedex">
-                <h2>Pokedex</h2>
-                <p class="welcome-text">
-                    Welcome to the pokémon team builder. In the pokedex you can
-                    search for pokémons and build your team. to look at your
-                    team and arrange it click the my team button
-                </p>
-                <form id="search-form">
+            <div id="pokedex">
+                <h1>Pokedex</h1>
+                <div class="welcome-text">
+                    <p>
+                        Welcome to the pokémon team builder. In the pokedex you
+                        can search for pokémons and build your team. to look at
+                        your team and arrange it click the my team button
+                    </p>
+                </div>
+                <form>
                     <div class="search-form">
                         <input
                             type="text"
@@ -46,13 +47,19 @@
                 <div id="search-results"></div>
                 <div id="results-container"></div>
             </div>
-            <div id="my-team" class="my-team">
-                <h2 class="my-team-header">My team</h2>
-                <h3 class="starting-team-header">Starting Team</h3>
+            <div id="my-team">
+                <h1 id="my-team-header">My team</h1>
+                <h2 class="starting-team-header">Starting Team</h2>
                 <div id="starting-team" class="pokemon-container"></div>
-                <h3>Reserves</h3>
+                <h2>Reserves</h2>
                 <div id="my-reserves" class="pokemon-container"></div>
             </div>
+            <div id="overlay"></div>
         </main>
+        <hr />
+        <footer>
+            <p>Developed with the help of:</p>
+            <a href="https://pokeapi.co/"> pokeAPI </a>
+        </footer>
     </body>
 </html>
